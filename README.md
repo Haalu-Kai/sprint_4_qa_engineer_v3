@@ -17,6 +17,9 @@
     - `add_book_in_favorites` — добавляет книгу в избранное.
     - `delete_book_from_favorites` — удаляет книгу из избранного.
     - `get_list_of_favorites_books` — получает список избранных книг.
+    - `test_add_new_book_same_book_twice_not_duplicated` — добавление двух одинаковых книг в коллекцию.
+    - `test_add_new_book_exactly_40_chars` — позитивная проверка границ имени книги.
+    - `test_add_book_in_favorites_book_not_in_collection` — добавление в избранное книги, которой нет в коллекции.
 
 Для каждого из методов были написаны тесты. Тесты  лежат в файле [test_tests.py](test/test_tests.py)
 

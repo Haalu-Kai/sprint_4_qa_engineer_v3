@@ -56,3 +56,22 @@ class TestBooksCollector:
         collect.add_book_in_favorites('Шерлок Холм')
         collect.delete_book_from_favorites('Шерлок Холм')
         assert len(collect.favorites) == 0
+
+    def test_add_new_book_same_book_twice_not_duplicated(self, collect):
+        collect.add_new_book('Война и мир')
+        collect.add_new_book('Война и мир')
+        assert len(collect.get_books_genre()) == 1, 'Одинаковая книга добавилась дважды'
+        assert 'Война и мир' in collect.get_books_genre()
+
+    def test_add_new_book_exactly_40_chars(self, collect):
+        name = 'a' * 40
+        collect.add_new_book(name)
+        assert len(collect.get_books_genre()) == 1
+        assert name in collect.get_books_genre()    
+
+    def test_add_book_in_favorites_book_not_in_collection(self, collect):
+        collect.add_book_in_favorites('Несуществующая книга')
+    
+        favorites = collect.get_list_of_favorites_books()
+        assert len(favorites) == 0, 'В избранное добавилась книга, которой нет в коллекции'
+        assert 'Несуществующая книга' not in favorites
